@@ -1,16 +1,21 @@
-# This is a sample Python script.
+#########################################################
+#                Just An Ordinary Walk Home
+#                  A Simple Text Adventure
+#
+#Author: John Michael Soza
+#########################################################
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+from scenes_and_functions import enter_name, introduction
+
+print("   Just An Ordinary Walk Home    \n")
+
+def main():
+    print("Welcome to 'Just An Ordinary Walk Home'!\n")
+
+    enter_name()
+    introduction()
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
 
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+if __name__ == "__main__":
+    main()
