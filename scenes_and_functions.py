@@ -34,7 +34,8 @@ def find_nickel():
     print("What would you like to do?")
     print("1: Pick up the nickel")
     print("2: Leave it and walk on")
-
+    print(alive)
+    print("Hi")
 
     while alive:
         while not valid_choice:
@@ -51,20 +52,24 @@ def find_nickel():
                 print("\nYou decide that a mere nickel is not but a pittance (no matter \nhow it glimmers) and resume your trek home.  Not two steps \ninto your journey you suddenly feel a small pricking sensation in \nyour neck, soon followed by a sense of dizziness.\n")
                 print("The last thing you remember is becoming quickly acquainted with \nthe sidewalk.\n")
 
+
                 valid_choice = True
                 alive = False
+
             else:
                 print("\nInvalid choice, try again.")
+    alive = dead_retry()
     return alive
 
 def dead_retry():
-    global alive
+    global alive, valid_choice
     alive = False
     print("You've been " + italic("assassinated") + ".\n")
     retry = input("That was unfortunate. Would you like to try again from this scene? (y/n): ")
     if retry == "y":
         print("\nRight. Here's another go.\n")
         alive = True
+        valid_choice = False
     elif retry == "n":
         print("\nI guess that's the end of it, then.  \n    Game Over\n")
         alive = False

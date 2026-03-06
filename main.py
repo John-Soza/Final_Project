@@ -24,8 +24,8 @@ def main():
             # scenes = get_choice(choices)
             alive = find_nickel()
 
-        if not alive:
-            try_again = dead_retry()
+        # if not alive:
+        #     try_again = dead_retry()
 
 
 
