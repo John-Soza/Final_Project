@@ -1,5 +1,6 @@
 alive = True
 valid_choice = False
+scene_successful = False
 
 
 def italic(txt):
@@ -9,12 +10,18 @@ def italic(txt):
 
 
 def enter_name():
+    """
+    The players enter their names here.
+    """
     user_name = input("Hello! What is your name?\nPlease enter your name: ")
     print()
     print("Well met, " + user_name + "! Let us begin the story!\nYour actions affect the outcome!\n")
     print("Godspeed!\n")
 
 def introduction():
+    """
+    This is the introductory text of the story.
+    """
     print("You are casually walking down the street on your way home, carefree and \ncontentedly humming to yourself, trying " + italic("not to be assassinated") + ".\n")
     input("Press enter to continue...")
     print("\nYou had an arduous but strangely rewarding day at work, and on your way \nhome you made a stop at your favorite department store to buy some new \nclothes to reward yourself.\n")
@@ -25,11 +32,10 @@ def introduction():
 
 def find_nickel():
     """
-    This is the first decision point.
+    This is the first decision point of the story.
     """
-
-    global alive
-    scene_successful = False
+    global alive, scene_successful
+    # scene_successful = False
     while not scene_successful and alive:
         global valid_choice
         valid_choice = False
@@ -60,6 +66,7 @@ def find_nickel():
             elif coin_grab == "2":
                 print("\nYou decide that a mere nickel is not but a pittance (no matter \nhow it glimmers) and resume your trek home.  Not two steps \ninto your journey you suddenly feel a small pricking sensation in \nyour neck, soon followed by a sense of dizziness.\n")
                 print("The last thing you remember is becoming intimately acquainted with \nthe sidewalk.\n")
+                input("Press enter to continue...")
 
 
                 valid_choice = True
@@ -76,9 +83,12 @@ def find_nickel():
     return alive
 
 def alley_guy():
-    global alive, valid_choice
+    """
+    This is the second decision point of the story.
+    """
+    global alive, valid_choice, scene_successful
     if alive:
-        scene_successful = False
+        scene_successful = False # This resets the variable to false, otherwise it skips this scene
         while not scene_successful and alive:
             valid_choice = False
             print(italic("\nANYWAY") + ", you continue your carefree trip home down the street, \neager to return home and try on your recently acquired apparel \nand enjoy some well-deserved leisure time.\n")
@@ -99,12 +109,13 @@ def alley_guy():
                     valid_choice = True
                     scene_successful = True
                     alive = True
+
                 elif go_see == "2":
                     print("\n'Yeah, right!  As if I'll fall for that one', you think to your-\nself as you turn your gaze back towards the general direction \nof your intended destination.\n")
                     print("Mid-stride of your first step you feel sudden pain the top of \nyour cranium, accompanied by an awful smashing sound!  Quite \nunderstandably, you lose consciousness.\n")
                     input("Press enter to continue...")
                     print("\nThe " + italic("good news")+ " is that the blow was not instantly fatal, and \nthe " + italic("even better news") + " is that you were swiftly rushed to the \nnearest hospital.\n")
-                    print("Unfortunately for you, though, " + italic("THIS IS CANADA") + " and it takes \nlonger for emergencies to be taken care of.  The doctors took \ntoo long to get too you.\n")
+                    print("Unfortunately for you, though, " + italic("THIS IS CANADA") + " and it takes \nlonger for emergencies to be taken care of.  The doctors took \ntoo long to get to you.\n")
                     input("Press enter to continue...")
                     print("\nYou were done in by the infamous healthcare system.\n")
 
@@ -123,10 +134,54 @@ def alley_guy():
         return alive
 
 def offer():
+    global alive, valid_choice, scene_successful
     if alive:
-        print("alive")
-        # scene_successful = False
-        # while not scene_successful and alive:
+        scene_successful = False # This resets the variable to false, otherwise it skips this scene
+        while not scene_successful and alive:
+            valid_choice = False
+            print("\n'They really should place a ban on placing flowerpots on the balustrades! \nSomebody could get hurt!', you say with no small modicum of indignance. \n(NOTE: for those who don't know, that's another term for guard rails on \nbalconies)\n")
+            print("In any case, you have a more pressing matter at hand.\n")
+            input("Press enter to continue...")
+            while not valid_choice:
+                print("\nYou turn your attention back to the gray-clad man of seemingly low moral \nfiber and gaze at him inquisitively.  Knowing that he now has your full \nattention he reaches inside his code and draws forth a small book.  By \nhis dialogue he seems to be trying to pawn it off on you and he seems \nvery adamant about the matter.\n")
+                print("What would you like to do?")
+                print("1: Refuse the offer with firm politeness.")
+                print("2: Buy the book (the asking price " + italic("is") + " quite cheap).")
+                print()
+
+                take_book = input("please enter '1' or '2' to decide: ")
+                if take_book == "1":
+                    print("\nYou're really not interested in buying another book right now -- and you \nalready have quite the backlog -- so you politely refuse the offer.\n")
+                    print("Possibly feeling a touch slighted, the man of seemingly low moral fiber \nabruptly strikes you in the abdomen sending you into a stagger. While \ntrying to maintain your footing you step into the empty space where a \nmanhole cover usually resides.  Too bad that today there " + italic("just happened") + " \nto be maintenance work.\n")
+                    input("Press enter to continue...")
+                    print("\nAs you fall through the open manhole your head hits the edge, causing \nloss of lucid cognitive functioning -- not to mention consciousness.  \nWhat's worse is that you fell into the water while in this state.\n")
+                    print("Up above, the man of seemingly low moral fiber peers down into the darkness \nwith a ghastly pallor coloring his face and a mortified expression that \nclearly says -- in common vernacular -- 'Oh crumbs!'. \n")
+                    input("Press enter to continue...")
+                    print("\nUttering a small, disingenuous 'Not me!' he swiftly places his hands \ninto his pockets and walks off -- innocuously whistling as casually as \nhumanly possible.\n")
+                    print("Your died a swift -- and not to mention " + italic("very stinky") + " -- death.\n")
+                    valid_choice = True
+                    alive = False
+
+                    try_again = dead_retry()
+                    if try_again:
+                        scene_successful = False
+                    else:
+                        scene_successful = True
+
+                elif take_book == "2":
+                    print("\nSomething tells you that your life " + italic("literally") + " depends upon the purchase of \nthis book, so you buy it.  Besides, what's a couple of dollars?\n")
+                    print("Apparently satisfied, the man of seemingly low moral fiber bids you a \nwonderful day and walks away -- whistling innocuously.  With that little \nmatter resolved, you can now refocus on getting home.\n")
+                    input("Press enter to continue...")
+                    valid_choice = True
+                    scene_successful = True
+                    alive = True
+
+                else:
+                    print("\nInvalid choice, try again.")
+
+        return alive
+
+
 
 def dead_retry():
     global alive, valid_choice
@@ -134,7 +189,7 @@ def dead_retry():
     retry_result = False
     input_received = False
     while not input_received:
-        retry = input("That was unfortunate. Would you like to try again from this scene? (y/n): ")
+        retry = input("\nThat was unfortunate.  \nWould you like to try again from this scene? (y/n): ")
         if retry.lower() == "y":
             print("\nRight. Here's another go.\n")
             alive = True
@@ -154,6 +209,7 @@ def dead_retry():
 # introduction()
 # scene = find_nickel()
 # scene = alley_guy()
+# offer()
 
 # def get_scene(scenes):
 #     scene_obj = dict(scenes = 0)

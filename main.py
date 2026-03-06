@@ -24,7 +24,9 @@ def main():
             # scenes = get_choice(choices)
             alive = find_nickel()
             alive = alley_guy()
-            offer()
+            alive = offer()
+
+            alive = False
 
             playing = False
 
