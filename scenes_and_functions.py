@@ -134,6 +134,9 @@ def alley_guy():
         return alive
 
 def offer():
+    """
+    This is the third decision point of the story.
+    """
     global alive, valid_choice, scene_successful
     if alive:
         scene_successful = False # This resets the variable to false, otherwise it skips this scene
@@ -181,22 +184,68 @@ def offer():
 
         return alive
 
+def book():
+    """
+    This is the fourth decision point of the story.
+    """
+    global alive, valid_choice, scene_successful
+    if alive:
+        scene_successful = False  # This resets the variable to false, otherwise it skips this scene
+        while not scene_successful and alive:
+            valid_choice = False
+            print("\nOnce again you resume your walk home, feeling slightly bewildered after this \nrather impromptu purchase.  Oh well, since you bought it you may as well take \na look at it.  You turn your gaze downward to examine the book. \n")
+            input("Press enter to continue...")
+            while not valid_choice:
+                print("\nIt appears to be a rather old book, judging from the binding.  It is titled \n" + italic("'The King In Yellow'") + ", and on the cover is a strange figure in yellow robes, \npossessing red feathered wings.\n")
+                print("What would you like to do?")
+                print("1: Don't read it.")
+                print("2: Give it a short read to get the gist.")
+                print()
+                read_book = input("please enter '1' or '2' to decide: ")
+                if read_book == "1":
+                    print("\nYou really couldn't care less about this book!\n")
+                    print("You nonchalantly toss the book into a fortuitously placed dustbin that you \nhappened to be passing by.  It was only a couple of dollars so it's no big \nloss.\n")
+                    print(italic("Moving right along") + ", back to heading home!\n")
+                    input("Press enter to continue...")
+                    valid_choice = True
+                    scene_successful = True
+                    alive = True
 
+                elif read_book == "2":
+                    print("\nJust a few sentences in you lose all rational thought and start gibbering \ninanely, staggering about without rhyme or reason!\n")
+                    print("You wander into a busy intersection and promptly get hit by a garbage \ntruck.  Nearby pedestrians observe the spectacle with an appropriate \namount of confusion.\n")
+                    input("Press enter to continue...")
+                    print("\nYou [indirectly] died from " + italic("things that mankind was not meant to know") + "!\n")
+
+                    valid_choice = True
+                    alive = False
+
+                    try_again = dead_retry()
+                    if try_again:
+                        scene_successful = False
+                    else:
+                        scene_successful = True
+
+                else:
+                    print("\nInvalid choice, try again.")
 
 def dead_retry():
+    """
+    This offers the players another chance at the story, should they die.
+    """
     global alive, valid_choice
     print("You've been " + italic("assassinated") + ".\n")
     retry_result = False
     input_received = False
     while not input_received:
         retry = input("\nThat was unfortunate.  \nWould you like to try again from this scene? (y/n): ")
-        if retry.lower() == "y":
+        if retry.lower() == "y":  #This sends the player back to the last checkpoint to try again.
             print("\nRight. Here's another go.\n")
             alive = True
             valid_choice = False
             retry_result = True
             input_received = True
-        elif retry.lower() == "n":
+        elif retry.lower() == "n":  #This ends the game.
             print("\nI guess that's the end of it, then.  \n\n    Game Over\n")
             alive = False
             retry_result = False
@@ -205,11 +254,17 @@ def dead_retry():
             print("\nInvalid choice, try again.")
     return retry_result
 
+
+#####  These calls are for testing!  #####
 # enter_name()
 # introduction()
 # scene = find_nickel()
 # scene = alley_guy()
 # offer()
+# book()
+
+#####  These functions are unused for this build  #####
+#####  They're also not quite right, at the moment  #####
 
 # def get_scene(scenes):
 #     scene_obj = dict(scenes = 0)
