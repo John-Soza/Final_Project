@@ -46,7 +46,7 @@ def find_nickel():
             input("Press enter to continue...")
             print("\nWhat would you like to do?")
             print("1: Pick up the nickel")
-            print("2: Leave it and walk on")
+            print("2: Leave it")
 
             print()
             coin_grab = input("please enter '1' or '2' to decide: ")
@@ -97,8 +97,8 @@ def alley_guy():
             while not valid_choice:
                 print("\nIn a nearby dark and dingy alley way stands a man of seemingly \nlow moral fiber, donned in a gray hat and trenchcoat.  It seems \nhe wants to speak with you.\n")
                 print("What would you like to do?")
-                print("1: Go to him.")
-                print("2: Ignore him.")
+                print("1: Go to him")
+                print("2: Ignore him")
                 print()
                 go_see = input("please enter '1' or '2' to decide: ")
                 if go_see == "1":
@@ -250,7 +250,7 @@ def might_be_followed():
                 print("What would you like to do?")
                 print("1: Enter the Men's Room")
                 print("2: Enter the Lady's Room")
-                print("3: Keep Walking")
+                print("3: Keep walking")
                 print()
 
                 choose_path = input("please enter '1', '2', or '3' to decide: ")
@@ -285,7 +285,7 @@ def might_be_followed():
                 elif choose_path == "3":
                     print("\nYou think 'Eh, I'm just being paranoid.' and keep on walking.  After all it's \nnot healthy to live in fear.  Your return to emotional equilibrium is cemented \nby whistling to yourself as your journey continues.\n")
                     print("As you cross the street at an intersection you hear a minor commotion behind \nyou.  It sounds like some lads are trying to pick up a lady, and by the sound \nof it she's getting rather irritated with their persistence.\n")
-                    print("You're sure she'll be able to handle it.  The timbre of her voice indicates that she \ncan easily take care of herself.\n")
+                    print("You're sure she'll be able to handle it.  The timbre of her voice indicates that \nshe can easily take care of herself.\n")
                     input("Press enter to continue...")
 
                     valid_choice = True
@@ -315,7 +315,7 @@ def mens_room():
             print("What would you like to do?")
             print("1: Change outfits to disguise yourself")
             print("2: Wait it out")
-            print("3: Make the assassin lady fall madly in love with you and no longer want to kill you.")
+            print("3: Make the assassin lady fall madly in love with you and no longer want to kill you")
             print()
 
             options = input("please enter '1', '2', or '3' to decide: ")
@@ -350,6 +350,164 @@ def mens_room():
                 print("\nInvalid choice, try again.")
 
     return alive
+
+def abandoned_store():
+    """
+    This is the sixth decision point of the story.
+    """
+    global alive, valid_choice, scene_successful
+    if alive:
+        scene_successful = False  # This resets the variable to false, otherwise it skips this scene
+        while not scene_successful and alive:
+            valid_choice = False
+            print("\nAs the sounds of the commotion fade in the distance behind you.  You decide to step \ninto a coffee shop of which you are quite fond and order your go-to beverage for a \nday such as this.\n")
+            print("Roughly half an hour later you leave the shop refreshed but also quite aware of how \nmuch time has passed and you're really wanting to get home as quickly as possible.\n")
+            input("Press enter to continue...")
+            print("\nThankfully, you know a [not necessarily legitimate] shortcut that you can use to \nsave time:  An abandoned department store that still remains unleased.  You and a \nfew friends discovered a covert entrance, back in your more reckless and \nyouthful years (around college-age, I'd say).\n")
+            print("You discreetly enter the derelict building via the secret entrance, still left \nunchecked after all these years.  The place looks just as desolate as ever.\n")
+            input("Press enter to continue...")
+            while not valid_choice:
+                print("\nAs you make your way through the vacant building something on a display fixture \ndraws your notice.\n")
+                print("It's a teddy bear -- and in conspicuously good condition, I might add.  It sits \nalone.  " + italic("It is unimportant and completely irrelevant to this story") + ".\n")
+                print("What would you like to do?")
+                print("1: Leave it")
+                print("2: Take it")
+                print()
+
+                take_bear = input("please enter '1' or '2' to decide: ")
+                if take_bear == "1":
+                    print("\nYou utter a small 'Huh.  Weird' and resume walking.  What need have you for a \nteddy bear -- especially one that " + italic("is unimportant and completely irrelevant to \nthis story") + "?\n")
+                    print("Before too long you find the exit at the other end and leave the store.\n")
+                    input("Press enter to continue...")
+
+                    valid_choice = True
+                    scene_successful = True
+                    alive = True
+
+                elif take_bear == "2":
+                    print("\nWell it " + italic("WOULD HAVE") + " been completely irrelevant if you hadn't picked it up!  It was \nintended for " + italic("SOMEONE ELSE") + "! >:( \n")
+                    print("the bear seems strangely resistant to being picked up, the sensation being akin \nto a pull-string on an old toy.  Before you have any time to reflect upon this \n you are engulfed in a storm of fire and shrapnel!\n")
+                    print("You suffered a " +italic("POINTLESS") + " death by " + italic("TEDDY BEAR") + "!!!  >:( \n")
+                    input("Press enter to continue...")
+
+                    alive = False
+                    valid_choice = True
+
+                    try_again = dead_retry()
+                    if try_again:
+                        scene_successful = False
+                    else:
+                        scene_successful = True
+
+                else:
+                    print("\nInvalid choice, try again.")
+
+        return alive
+
+
+def park_entrance():
+    """
+    This is the seventh decision point of the story.
+    """
+    global alive, valid_choice, scene_successful
+    if alive:
+        scene_successful = False  # This resets the variable to false, otherwise it skips this scene
+        while not scene_successful and alive:
+            valid_choice = False
+            print("\nBack in the warm sunlight you soon arrive at a nearby park that's also a regular \nand important shortcut for your daily trips home.  The flora and fauna cause you \nto realize just how nice a day it is.\n")
+            print("Just past the entrance to the park grounds you notice a lady sitting silently on \na bench.  She's dressed in stark and austere black attire and dark shades obscure \nher eyes.  She smokes a clove cigarette.\n")
+            input("Press enter to continue...")
+
+            while not valid_choice:
+                print("\nShe seems very business-oriented and no-nonsense, but highly attractive.  Maybe \nyou could strike up a conversation.\n")
+                print("What would you like to do?")
+                print("1: Try talking with her")
+                print("2: Leave her be")
+                print("3: Make the lady fall madly in love with you and long for you to sweep her off her feet")
+                print()
+
+                small_talk = input("please enter '1', '2', or '3' to decide: ")
+                if small_talk == "1":
+                    print("\nThe worst that could happen is being turned down.  You go over to speak with her.\n")
+                    input("Press enter to continue...")
+                    print("\nAfter a few short awkward exchanges with her having a strained smile on her face \nshe gives up all pretence of pleasantries and pulls out a gun and shoots you -- \nher lips pursed in irritation ("+ italic("almost as if she's already had to put up with \nMULTIPLE clumsy attempts at pickups and has had quite enough of it") +")!\n")
+                    print("In your last fleeting moments of consciousness you hear the lady say in a cold-\nblooded yet relieved voice '" + italic("FINALLY.  Mission Accomplished.  Job done") + "'.\n")
+                    input("Press enter to continue...")
+
+                    alive = False
+                    valid_choice = True
+
+                    try_again = dead_retry()
+                    if try_again:
+                        scene_successful = False
+                    else:
+                        scene_successful = True
+
+                elif small_talk == "2":
+                    print("\nJudging by her aforementioned no-nonsense demeaner you suspect that she'd rather \nnot be disturbed, so you walk on past.\n")
+                    print("Not but a few moments later, however, you hear footsteps behind you.  As you didn't \nsense anyone else in the vicinity before now, you can logically conclude \nthat they belong to her.\n")
+                    print("Maybe she's interested after all, but it's best not to seem too eager.  It would \nreek of desperation, so you pretend not to notice yet and keep on walking.\n")
+                    input("Press enter to continue...")
+                    valid_choice = True
+                    scene_successful = True
+                    alive = True
+
+                elif small_talk == "3":
+                    your_actions()
+
+                else:
+                    print("\nInvalid choice, try again.")
+
+
+        return alive
+
+def cat():
+    """
+    This is the final decision point of the story.
+    """
+    global alive, valid_choice, scene_successful
+    if alive:
+        scene_successful = False  # This resets the variable to false, otherwise it skips this scene
+        while not scene_successful and alive:
+            valid_choice = False
+            while not valid_choice:
+                print("What would you like to do?")
+                print("1: Climb the tree to help the cat")
+                print("2: Leave it be")
+                print("3: Gesture to the cat to jump down and that you'll catch him")
+                print()
+
+                help_cat = input("please enter '1', '2', or '3' to decide: ")
+                if help_cat == "1":
+                    alive = False
+                    valid_choice = True
+
+                    try_again = dead_retry()
+                    if try_again:
+                        scene_successful = False
+                    else:
+                        scene_successful = True
+
+                elif help_cat == "2":
+                    valid_choice = True
+                    scene_successful = True
+                    alive = True
+
+                elif help_cat == "3":
+                    alive = False
+                    valid_choice = True
+
+                    try_again = dead_retry()
+                    if try_again:
+                        scene_successful = False
+                    else:
+                        scene_successful = True
+
+                else:
+                    print("\nInvalid choice, try again.")
+
+        return alive
+
 
 def your_actions():
     """
@@ -394,6 +552,10 @@ def dead_retry():
 # book()
 # scene = might_be_followed()
 # scene = mens_room()
+# abandoned_store()
+# park_entrance()
+cat()
+
 
 #####  These functions are unused for this build  #####
 #####  They're also not quite right, at the moment  #####
