@@ -5,7 +5,7 @@
 #Author: John Michael Soza
 #########################################################
 
-from scenes_and_functions import enter_name, introduction, find_nickel, alley_guy, offer, book
+from scenes_and_functions import enter_name, introduction, find_nickel, alley_guy, offer, book, might_be_followed
 
 print("   Just An Ordinary Walk Home    \n")
 
@@ -20,12 +20,13 @@ def main():
         alive = True
 
         while alive:
-            # choices = get_scene(scenes)
-            # scenes = get_choice(choices)
+            # choices = get_scene(scenes)   #This is not used
+            # scenes = get_choice(choices)  #This is not used
             alive = find_nickel()
             alive = alley_guy()
             alive = offer()
             alive = book()
+            alive = might_be_followed()
 
             alive = False
 

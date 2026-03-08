@@ -158,7 +158,7 @@ def offer():
                     print("Possibly feeling a touch slighted, the man of seemingly low moral fiber \nabruptly strikes you in the abdomen sending you into a stagger. While \ntrying to maintain your footing you step into the empty space where a \nmanhole cover usually resides.  Too bad that today there " + italic("just happened") + " \nto be maintenance work.\n")
                     input("Press enter to continue...")
                     print("\nAs you fall through the open manhole your head hits the edge, causing \nloss of lucid cognitive functioning -- not to mention consciousness.  \nWhat's worse is that you fell into the water while in this state.\n")
-                    print("Up above, the man of seemingly low moral fiber peers down into the darkness \nwith a ghastly pallor coloring his face and a mortified expression that \nclearly says -- in common vernacular -- 'Oh crumbs!'. \n")
+                    print("Up above, the man of seemingly low moral fiber peers down into the darkness \nwith a ghastly pallor coloring his face and a mortified expression on \nhis countenance that clearly says -- in common vernacular -- 'Oh crumbs!'. \n")
                     input("Press enter to continue...")
                     print("\nUttering a small, disingenuous 'Not me!' he swiftly places his hands \ninto his pockets and walks off -- innocuously whistling as casually as \nhumanly possible.\n")
                     print("Your died a swift -- and not to mention " + italic("very stinky") + " -- death.\n")
@@ -229,16 +229,146 @@ def book():
                 else:
                     print("\nInvalid choice, try again.")
 
+        return alive
+
+def might_be_followed():
+    """
+    This is the fifth decision point of the story.
+    """
+    global alive, valid_choice, scene_successful
+    if alive:
+        scene_successful = False  # This resets the variable to false, otherwise it skips this scene
+        while not scene_successful and alive:
+            valid_choice = False
+            print("\nAs you press onwards your eagerness to try on the new clothes you carry is \nrising to nearly unbearable levels and the anticipation makes you quicken your \npace, but your ears soon perceive that it's not only your pace that quickens.  \n")
+            print("You've noticed the sound of the footfalls behind you.  You had been hearing \nthem for a few minutes but your mind didn't register them until they sped up \nto match your pace.\n")
+            input("Press enter to continue...")
+
+            while not valid_choice:
+                print("\nIt's probably nothing, but it never hurts to be extra prudent about these \nthings.  Just to be on the safe side, you calmly glance about to find a \nway to lose this potential follower. \n")
+                print("Up ahead you see some restrooms.\n")
+                print("What would you like to do?")
+                print("1: Enter the Men's Room")
+                print("2: Enter the Lady's Room")
+                print("3: Keep Walking")
+                print()
+
+                choose_path = input("please enter '1', '2', or '3' to decide: ")
+                if choose_path == "1":
+                    outcome = mens_room()
+                    alive = False
+                    valid_choice = True
+
+                    try_again = dead_retry()
+                    if try_again:
+                        scene_successful = False
+                    else:
+                        scene_successful = True
+
+                elif choose_path == "2":
+                    print("\nSo hey, I forgot to mention that you're " + italic("actually playing as man") + " in this game.  \nSorry about that.  \n\nThat name you entered at the start of this game is " + italic("YOUR") + " name, not the \ncharacter's.  He already has a name and it's " + italic("Tad Asinine") + ".\n")
+                    input("Press enter to continue...")
+                    print("\nGetting back to the story...")
+                    print("\nThe moment you walk through the entrance you hear a single startled scream, \nimmediately followed a by a series of more screams!  A mob of very angry \nladies assails you, spraying you with various brands of mace and pepper \nspray and bludgeoning you with their very heavy purses -- all while posting \nabout it on social media.\n")
+                    print("You've been " + italic("character assassinated") + ", and the shame of it killed you for real \n(as, did the concussion from the repetitive blunt trauma, those purses \nhad heavy objects in them).\n")
+                    input("Press enter to continue...")
+
+                    alive = False
+                    valid_choice = True
+
+                    try_again = dead_retry()
+                    if try_again:
+                        scene_successful = False
+                    else:
+                        scene_successful = True
+
+                elif choose_path == "3":
+                    print("\nYou think 'Eh, I'm just being paranoid.' and keep on walking.  After all it's \nnot healthy to live in fear.  Your return to emotional equilibrium is cemented \nby whistling to yourself as your journey continues.\n")
+                    print("As you cross the street at an intersection you hear a minor commotion behind \nyou.  It sounds like some lads are trying to pick up a lady, and by the sound \nof it she's getting rather irritated with their persistence.\n")
+                    print("You're sure she'll be able to handle it.  The timbre of her voice indicates that she \ncan easily take care of herself.\n")
+                    input("Press enter to continue...")
+
+                    valid_choice = True
+                    scene_successful = True
+                    alive = True
+
+                else:
+                    print("\nInvalid choice, try again.")
+
+        return alive
+
+def mens_room():
+    """
+    This is an offshoot decision point for the might_be_followed function
+    """
+    global alive, valid_choice, scene_successful
+    scene_successful = False
+    while not scene_successful and alive:
+        valid_choice = False
+        print("\nYou enter the men's room, hopefully you'll be safe here.\n")
+        print("Out of curiosity you peer outside from around the corner, careful to not be seen.  \nScanning the environment your gaze fixes upon a figure -- a lady -- leaning \nagainst a waist-high retaining wall of a flowerbed containing shrubbery.\n")
+        print("She's dressed in stark and austere black attire and dark shades obscure her eyes.  \nShe smokes a clove cigarette and appears to be waiting for someone... she wasn't \nthere a moment ago.\n")
+        input("Press enter to continue...")
+        while not valid_choice:
+            print("\nYou might be just being paranoid, but this woman seems suspect to you.  You try \nto think of what to do, and find yourself glancing at your bag as you weigh your \noptions.\n")
+            print("Come to think of it, amongst your purchases were a hat and trenchcoat...\n")
+            print("What would you like to do?")
+            print("1: Change outfits to disguise yourself")
+            print("2: Wait it out")
+            print("3: Make the assassin lady fall madly in love with you and no longer want to kill you.")
+            print()
+
+            options = input("please enter '1', '2', or '3' to decide: ")
+            if options == "1":
+                print("\nIn a moment of inspired brilliance you decide to don your new clothing as a \ndisguise.  'Not only will I get out of this situation, I'll also get to try \non my new clothes!  Two birds with one stone!  I'm so clever!', you think to \nyourself.\n")
+                print("You change into your new out fit -- complete with hat -- and place your old \nclothes into the designer bag (they're still good, after all).  With renewed \nconfidence you walk out of the bathroom (first glancing at the mirror to \nadmire yourself).\n")
+                input("Press enter to continue...")
+                print("\nThe moment you exit the bathroom you perceive two things: 1) a 'BLAM!!!' sound; \nand 2) an excruciating pain in your chest -- swiftly followed by death.  In your \nfleeting final moments of consciousness you see the lady walk away.\n")
+                print("Your " + italic("'brilliant'") + " plan didn't work because she recognized the very distinct \n" + italic("designer bag") + " you were carrying, you sad silly person.\n")
+                print("And no, there's no option to hide or discard it!  That would be too much hard \nwork, and as a tax-paying citizen I am morally opposed to hard work.\n")
+                input("Press enter to continue...")
+                alive = False
+                valid_choice = True
+                scene_successful = True
+
+            elif options == "2":
+                print("\nYou wait in the hopes that she'll eventually get bored and go away.\n")
+                input("Press enter to continue...")
+                print("\nAbout an hour passes.  A few people have come and gone.  The black-clad lady \nis still there.\n")
+                input("Press enter to continue...")
+                print("\nAnother hour passes.  She's still there.  The other men are starting to look at \nyou funny.  They find you suspicious and are quite visibly in a hurry leave.  \nSoon the bathroom is quite empty.\n")
+                input("Press enter to continue...")
+                print("\nApparently tired of waiting, the lady breaks societal rules and enters the \nMen's Room with her lips pursed in irritation, draws out a gun and shoots you.  \nWith her work done she casually leaves the scene.")
+                alive = False
+                valid_choice = True
+                scene_successful = True
+
+            elif options == "3":
+                your_actions()
+
+            else:
+                print("\nInvalid choice, try again.")
+
+    return alive
+
+def your_actions():
+    """
+    This is just for my own amusement.
+    """
+    print("\nYOU ONLY HAVE CONTROL OVER " + italic("YOUR") + " ACTIONS.  \nYOU CAN ONLY AFFECT WHAT " + italic("YOU") + " DO.  YOU HAVE \nNO INFLUENCE OVER THE THOUGHTS AND DECISIONS \nOF OTHER CHARACTERS IN THIS STORY.\n")
+    print("GO BACK AND TRY AGAIN.\n")
+    input("Press enter to continue...")
+
 def dead_retry():
     """
     This offers the players another chance at the story, should they die.
     """
     global alive, valid_choice
-    print("You've been " + italic("assassinated") + ".\n")
+    print("\nYou've been " + italic("assassinated") + ".\n")
     retry_result = False
     input_received = False
     while not input_received:
-        retry = input("\nThat was unfortunate.  \nWould you like to try again from this scene? (y/n): ")
+        retry = input("That was unfortunate.  \nWould you like to try again from this scene? (y/n): ")
         if retry.lower() == "y":  #This sends the player back to the last checkpoint to try again.
             print("\nRight. Here's another go.\n")
             alive = True
@@ -262,6 +392,8 @@ def dead_retry():
 # scene = alley_guy()
 # offer()
 # book()
+# scene = might_be_followed()
+# scene = mens_room()
 
 #####  These functions are unused for this build  #####
 #####  They're also not quite right, at the moment  #####
