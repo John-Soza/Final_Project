@@ -3,6 +3,7 @@ valid_choice = False
 scene_successful = False
 reached_end = False
 replay = False
+counter = 0
 
 
 def italic(txt):
@@ -27,6 +28,7 @@ def enter_name():
         elif user_name.isalpha():
             print()
             print("Well met, " + user_name + "! Let us begin the story!\nYour actions affect the outcome!\n")
+            print("And " + italic("don't worry too much about failing") + "!  If you \nmake a mistake you have the option to retry from \n" + italic("the last checkpoint") + ".\n")
             print("Godspeed!\n")
             input("Press enter to continue...")
             valid_name = True
@@ -590,13 +592,13 @@ def epilogue():
         print("\nThe next day, at the laboratory at which you work, you make a small but utterly \nfatal error that results in an apocalyptic chain reaction that spreads throughout \nthe entire world -- consuming " + italic("all life") + " in its wake!\n")
         print("You've unwittingly " + italic("assassinated") + " the world and all life within it.\n")
         input("Press enter to continue...")
-        print("\n... OH!...\n")
+        print("\n... OH!...I say...\n")
         input("Press enter to continue...")
         print("\n...\n")
         input("Press enter to continue...")
-        print("\n...\n")
+        print("\n...Welllll...\n")
         input("Press enter to continue...")
-        print("\n... " + italic("OK, then") + ".\n")
+        print("\n... " + italic("Alright, then") + ".\n")
         print("           " +italic("FIN"))
         input("\nPress enter to complete the game...")
 
@@ -605,20 +607,36 @@ def epilogue():
 
 
 def new_game():
-    global scene_successful, replay, reached_end
+    global scene_successful, replay, reached_end, counter
     if reached_end:
-        replay = False
+
         print("\nCongratulations!  You have reached the end of my game!\n")
-        print("Would you like to have another go at the story and try to find all the different \nutterly ridiculous ways to di-- I mean ENDINGS of the game?\n")
-        answer = input("What say you? (y/n): ")
-        if answer == "y":
-            replay = True
-            scene_successful = False
-            reached_end = False
-        elif answer == "n":
-            replay = False
+        if counter < 1:
+            print("And great job on not dying until you " + italic("accidentally destroyed the world") + "!\n")
+        elif counter == 1:
+            print("And you only died " + italic("ONCE") + " on your way to " + italic("accidentally destroying the world") + "!\n")
+        elif 0 < counter < 11:
+            print(f"And it only took you {italic(counter)} deaths on your way to " + italic(
+                "accidentally \ndestroying the world") + "!\n")
         else:
-            print("\nInvalid choice, try again.")
+            print("And you made " + italic("EVERY mistake in the book") + "! And that \nwas " + italic("BEFORE") + " you " + italic(
+                "accidentally destroyed the world") + "!\n")
+        print("Would you like to have another go at the story and try to find all the different \nutterly ridiculous ways to di-- I mean ENDINGS of the game?")
+        replay = False
+        input_received = False
+        while not input_received:
+            answer = input("\nWhat say you? (y/n): ")
+            if answer == "y":
+                replay = True
+                scene_successful = False
+                reached_end = False
+                input_received = True
+                counter = 0
+            elif answer == "n":
+                replay = False
+                input_received = True
+            else:
+                print("\nInvalid choice, try again.")
     return replay
 
 
@@ -646,7 +664,7 @@ def dead_retry():
     """
     This offers the players another chance at the story, should they die.
     """
-    global alive, valid_choice, replay
+    global alive, valid_choice, replay, counter
     print("\nYou've been " + italic("assassinated") + ".\n")
     retry_result = False
     input_received = False
@@ -654,6 +672,7 @@ def dead_retry():
         retry = input("That was unfortunate.  \nWould you like to try again from this scene? (y/n): ")
         if retry.lower() == "y":  #This sends the player back to the last checkpoint to try again.
             print("\nRight. Here's another go.\n")
+            counter += 1
             alive = True
             valid_choice = False
             retry_result = True
