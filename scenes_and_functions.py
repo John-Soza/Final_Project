@@ -618,9 +618,13 @@ def new_game():
         elif 0 < counter < 11:
             print(f"And it only took you {italic(counter)} deaths on your way to " + italic(
                 "accidentally \ndestroying the world") + "!\n")
-        else:
+        elif 11 <= counter < 20:
             print("And you made " + italic("EVERY mistake in the book") + "! And that \nwas " + italic("BEFORE") + " you " + italic(
                 "accidentally destroyed the world") + "!\n")
+        elif counter < 0:  #This is a joke
+            print("The ability to reach this result " + italic("doesn't exist! HOW DID YOU GET HERE!?\n"))
+        else:
+            print(italic(f"{counter} DEATHS???  I don't even know how you got through this story!\n"))  #Thanks for the idea, Leah!
         print("Would you like to have another go at the story and try to find all the different \nutterly ridiculous ways to di-- I mean ENDINGS of the game?")
         replay = False
         input_received = False
