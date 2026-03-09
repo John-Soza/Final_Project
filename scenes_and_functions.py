@@ -1,6 +1,8 @@
 alive = True
 valid_choice = False
 scene_successful = False
+reached_end = False
+replay = False
 
 
 def italic(txt):
@@ -13,22 +15,34 @@ def enter_name():
     """
     The players enter their names here.
     """
-    user_name = input("Hello! What is your name?\nPlease enter your name: ")
-    print()
-    print("Well met, " + user_name + "! Let us begin the story!\nYour actions affect the outcome!\n")
-    print("Godspeed!\n")
+    print("\nHello! What is your name?\n")
+    valid_name = False
+    while not valid_name:
+        user_name = input("Please enter your name: ")
+
+        if user_name.isspace() or user_name == "":
+            print("\nPlease " + italic("ACTUALLY ENTER") + " a name.\n")
+        elif user_name.isdigit():
+            print("\nNumbers are " + italic("NOT") + " names.  If there is a number in your formal name, please \nuse " + italic("Roman Numerals") + " such as " + italic("'I', 'II', 'III'") + ", etc.\n")
+        elif user_name.isalpha():
+            print()
+            print("Well met, " + user_name + "! Let us begin the story!\nYour actions affect the outcome!\n")
+            print("Godspeed!\n")
+            input("Press enter to continue...")
+            valid_name = True
+
 
 def introduction():
     """
     This is the introductory text of the story.
     """
-    print("You are casually walking down the street on your way home, carefree and \ncontentedly humming to yourself, trying " + italic("not to be assassinated") + ".\n")
-    input("Press enter to continue...")
-    print("\nYou had an arduous but strangely rewarding day at work, and on your way \nhome you made a stop at your favorite department store to buy some new \nclothes to reward yourself.\n")
-    print("The weight and feel of the store's designer bag adds a small boost to \nyour confidence.\n")
-    input("Press enter to continue...")
+    if alive or replay:
+        print("\nYou are casually walking down the street on your way home, carefree and \ncontentedly humming to yourself, trying " + italic("not to be assassinated") + ".\n")
+        input("Press enter to continue...")
+        print("\nYou had an arduous but strangely rewarding day at work, and on your way \nhome you made a stop at your favorite department store to buy some new \nclothes to reward yourself.\n")
+        print("The weight and feel of the store's designer bag adds a small boost to \nyour confidence.\n")
+        input("Press enter to continue...")
 
-# introduction()
 
 def find_nickel():
     """
@@ -36,51 +50,54 @@ def find_nickel():
     """
     global alive, scene_successful
     # scene_successful = False
-    while not scene_successful and alive:
-        global valid_choice
-        valid_choice = False
-        print("\nduring your lackadaisical stroll you perceive a bright glint in your \nperipheral vision. You turn your head to investigate.\n")
-
-        while not valid_choice:
-            print("On the ground you see a bright and shiny nickel, seemingly freshly minted.  \nIts glimmer is appealing but it's not really worth that much and you're \nnot exactly hurting for cash, either.  You could easily pass it by.\n")
+    if alive:
+        while not scene_successful and alive:
+            global valid_choice
+            valid_choice = False
+            print("\nduring your lackadaisical stroll you perceive a bright glint in your \nperipheral vision. You turn your head to investigate.\n")
             input("Press enter to continue...")
-            print("\nWhat would you like to do?")
-            print("1: Pick up the nickel")
-            print("2: Leave it")
 
-            print()
-            coin_grab = input("please enter '1' or '2' to decide: ")
-            if coin_grab == "1":
-                print(
-                    "\nYou decide that every little bit helps (not to mention that its \nshine is simply too good to pass up).\n")
-                print(
-                    "You bend down to pick up the nickle.  As you grab it you hear a \n'thunk' sound nearby, prompting you to impulsively look in the \nsound's direction as you return to your upright posture.\n")
+            while not valid_choice:
+                print("\nOn the ground you see a bright and shiny nickel, seemingly freshly minted.  \nIts glimmer is appealing but it's not really worth that much and you're \nnot exactly hurting for cash, either.  You could easily pass it by.\n")
                 input("Press enter to continue...")
-                print("\nOn a nearby wooden utility pole you see a long piece of still-\nquivering metal -- not much wider than a sewing needle -- firmly \nlodged into the wooden surface at about the same height as your \nneck.\n")
-                print("You utter a largely indifferent 'Hm. Blowdart.' and resume your \ntrek home.  After all, it's probably nothing to worry about.\n")
-                input("Press enter to continue...")
-                valid_choice = True
-                scene_successful = True
-                alive = True
+                print("\nWhat would you like to do?")
+                print("1: Pick up the nickel")
+                print("2: Leave it")
 
-            elif coin_grab == "2":
-                print("\nYou decide that a mere nickel is not but a pittance (no matter \nhow it glimmers) and resume your trek home.  Not two steps \ninto your journey you suddenly feel a small pricking sensation in \nyour neck, soon followed by a sense of dizziness.\n")
-                print("The last thing you remember is becoming intimately acquainted with \nthe sidewalk.\n")
-                input("Press enter to continue...")
-
-
-                valid_choice = True
-                alive = False
-                try_again = dead_retry()
-                if try_again:
-                    scene_successful = False
-                else:
+                print()
+                coin_grab = input("please enter '1' or '2' to decide: ")
+                if coin_grab == "1":
+                    print(
+                        "\nYou decide that every little bit helps (not to mention that its \nshine is simply too good to pass up).\n")
+                    print(
+                        "You bend down to pick up the nickle.  As you grab it you hear a \n'thunk' sound nearby, prompting you to impulsively look in the \nsound's direction as you return to your upright posture.\n")
+                    input("Press enter to continue...")
+                    print("\nOn a nearby wooden utility pole you see a long piece of still-\nquivering metal -- not much wider than a sewing needle -- firmly \nlodged into the wooden surface at about the same height as your \nneck.\n")
+                    print("You utter a largely indifferent 'Hm. Blowdart.' and resume your \ntrek home.  After all, it's probably nothing to worry about.\n")
+                    input("Press enter to continue...")
+                    valid_choice = True
                     scene_successful = True
+                    alive = True
 
-            else:
-                print("\nInvalid choice, try again.")
+                elif coin_grab == "2":
+                    print("\nYou decide that a mere nickel is not but a pittance (no matter \nhow it glimmers) and resume your trek home.  Not two steps \ninto your journey you suddenly feel a small pricking sensation in \nyour neck, soon followed by a sense of dizziness.\n")
+                    print("The last thing you remember is becoming intimately acquainted with \nthe sidewalk.\n")
+                    input("Press enter to continue...")
 
-    return alive
+
+                    valid_choice = True
+                    alive = False
+                    try_again = dead_retry()
+                    if try_again:
+                        scene_successful = False
+                    else:
+                        scene_successful = True
+
+                else:
+                    print("\nInvalid choice, try again.")
+
+        return alive
+
 
 def alley_guy():
     """
@@ -112,7 +129,7 @@ def alley_guy():
 
                 elif go_see == "2":
                     print("\n'Yeah, right!  As if I'll fall for that one', you think to your-\nself as you turn your gaze back towards the general direction \nof your intended destination.\n")
-                    print("Mid-stride of your first step you feel sudden pain the top of \nyour cranium, accompanied by an awful smashing sound!  Quite \nunderstandably, you lose consciousness.\n")
+                    print("Mid-stride of your first step you feel sudden pain at the top of \nyour cranium, accompanied by an awful smashing sound!  Quite \nunderstandably, you lose consciousness.\n")
                     input("Press enter to continue...")
                     print("\nThe " + italic("good news")+ " is that the blow was not instantly fatal, and \nthe " + italic("even better news") + " is that you were swiftly rushed to the \nnearest hospital.\n")
                     print("Unfortunately for you, though, " + italic("THIS IS CANADA") + " and it takes \nlonger for emergencies to be taken care of.  The doctors took \ntoo long to get to you.\n")
@@ -133,6 +150,7 @@ def alley_guy():
 
         return alive
 
+
 def offer():
     """
     This is the third decision point of the story.
@@ -146,7 +164,7 @@ def offer():
             print("In any case, you have a more pressing matter at hand.\n")
             input("Press enter to continue...")
             while not valid_choice:
-                print("\nYou turn your attention back to the gray-clad man of seemingly low moral \nfiber and gaze at him inquisitively.  Knowing that he now has your full \nattention he reaches inside his code and draws forth a small book.  By \nhis dialogue he seems to be trying to pawn it off on you and he seems \nvery adamant about the matter.\n")
+                print("\nYou turn your attention back to the gray-clad man of seemingly low moral \nfiber and gaze at him inquisitively.  Knowing that he now has your full \nattention he reaches inside his coat and draws forth a small book.  By \nhis dialogue he seems to be trying to pawn it off on you and he seems \nvery adamant about the matter.\n")
                 print("What would you like to do?")
                 print("1: Refuse the offer with firm politeness.")
                 print("2: Buy the book (the asking price " + italic("is") + " quite cheap).")
@@ -183,6 +201,7 @@ def offer():
                     print("\nInvalid choice, try again.")
 
         return alive
+
 
 def book():
     """
@@ -230,6 +249,7 @@ def book():
                     print("\nInvalid choice, try again.")
 
         return alive
+
 
 def might_be_followed():
     """
@@ -297,6 +317,7 @@ def might_be_followed():
 
         return alive
 
+
 def mens_room():
     """
     This is an offshoot decision point for the might_be_followed function
@@ -351,6 +372,7 @@ def mens_room():
 
     return alive
 
+
 def abandoned_store():
     """
     This is the sixth decision point of the story.
@@ -386,7 +408,7 @@ def abandoned_store():
 
                 elif take_bear == "2":
                     print("\nWell it " + italic("WOULD HAVE") + " been completely irrelevant if you hadn't picked it up!  It was \nintended for " + italic("SOMEONE ELSE") + "! >:( \n")
-                    print("the bear seems strangely resistant to being picked up, the sensation being akin \nto a pull-string on an old toy.  Before you have any time to reflect upon this \n you are engulfed in a storm of fire and shrapnel!\n")
+                    print("the bear seems strangely resistant to being picked up, the sensation being akin \nto a pull-string on an old toy.  Before you have any time to reflect upon this \nyou are engulfed in a storm of fire and shrapnel!\n")
                     print("You suffered a " +italic("POINTLESS") + " death by " + italic("TEDDY BEAR") + "!!!  >:( \n")
                     input("Press enter to continue...")
 
@@ -430,7 +452,7 @@ def park_entrance():
                 if small_talk == "1":
                     print("\nThe worst that could happen is being turned down.  You go over to speak with her.\n")
                     input("Press enter to continue...")
-                    print("\nAfter a few short awkward exchanges with her having a strained smile on her face \nshe gives up all pretence of pleasantries and pulls out a gun and shoots you -- \nher lips pursed in irritation ("+ italic("almost as if she's already had to put up with \nMULTIPLE clumsy attempts at pickups and has had quite enough of it") +")!\n")
+                    print("\nAfter a few short awkward exchanges, with her having a strained smile on her face, \nshe gives up all pretence of pleasantries and pulls out a gun and shoots you -- \nher lips pursed in irritation ("+ italic("almost as if she's already had to put up with \nMULTIPLE clumsy attempts at pickups and has had quite enough of it") +")!\n")
                     print("In your last fleeting moments of consciousness you hear the lady say in a cold-\nblooded yet relieved voice '" + italic("FINALLY.  Mission Accomplished.  Job done") + "'.\n")
                     input("Press enter to continue...")
 
@@ -461,6 +483,7 @@ def park_entrance():
 
         return alive
 
+
 def cat():
     """
     This is the final decision point of the story.
@@ -470,15 +493,27 @@ def cat():
         scene_successful = False  # This resets the variable to false, otherwise it skips this scene
         while not scene_successful and alive:
             valid_choice = False
+            print("\nAs you meander through the park, trying to think of a list of potential subject \nmatter for conversation with the lady behind you, you hear a small 'meowing' sound. \nYou look about in search of the source of it.\n")
+            print("You hear another meow.  It sounds like it's coming from above.  You look up and see \nan orange, short-haired tabby cat sitting on a branch, staring down at you from the \n'bove.  Now that it has your attention, it 'meows' again.\n")
+            input("Press enter to continue...")
+
             while not valid_choice:
+                print("\nThough it doesn't appear visibly distressed, it's meow does indicate a craving for \nattention and it is looking at you quite intently.  It might be stuck.\n")
+                print("You notice that the footsteps behind you have stopped.\n")
                 print("What would you like to do?")
                 print("1: Climb the tree to help the cat")
                 print("2: Leave it be")
-                print("3: Gesture to the cat to jump down and that you'll catch him")
+                print("3: Gesture to the cat to jump down and that you'll catch it")
                 print()
 
                 help_cat = input("please enter '1', '2', or '3' to decide: ")
                 if help_cat == "1":
+                    print("\nYou have a soft spot for cats, and this might be an excellent way to impress the \nlady -- not to mention an " + italic("excellent conversation starter") + "!  You put down your bags, \nmaking extra sure that your gaze doesn't turn in her direction so that she won't \nrealize you're aware of her presence, and proceed to climb the tree to help the \nlittle guy.\n")
+                    print("Upon reaching the branch on which it sits the orange cat lets out a very frightened \n'YeeOWWWWWWLLLLLL!!!' and starts mauling your face with it's razor sharp claws \n-- the pain of which causes you to loose your grip!\n")
+                    input("Press enter to continue...")
+                    print("\nYou know those angles at which you can land from a fall that, though quite painful, \nallow you to survive it?  " + italic("You didn't land at one of those angles") + ".\n")
+                    print("If it's any consolation, at least it was over quickly.\n")
+                    input("Press enter to continue...")
                     alive = False
                     valid_choice = True
 
@@ -489,11 +524,31 @@ def cat():
                         scene_successful = True
 
                 elif help_cat == "2":
+                    print("\nYou recall that cats also have the ability to " + italic("climb back down") + " trees, so despite your \ninnate desire to help the cat, you know that it'll be fine and keep on walking.\n")
+                    print("31 paces later you hear behind you the sudden and harshly-unexpected cacophony of \ndeafening screams and an angry 'YeeOWWWWWWLLLLLL!!!' and the subsequent sound of a \nviolent impact!  You instinctively spin around from the fright!\n")
+                    print("You see the cat scurry off into the distance, and lowering your gaze a little you see \nthe lady lying on the ground!  There are claw marks on her face!  She's not moving!\n")
+                    input("Press enter to continue...")
+                    print("\nYou rush over to help her if you can, but she's lifeless.  Nearby you see a man with \na briefcase and -- after your urgent cry for his assistance -- he hurriedly makes his \nway to your position.  He just so happens to be a doctor!  The day might be saved!\n")
+                    input("Press enter to continue...")
+                    print("\nHowever, after a brief check the doctor looks at you and shakes his head in a manner \nthat says 'I'm sorry, lad, she's done for'.  He looks at his watch and pronounces her \ndead, turns to you, advises you to go home and try to get your mind off of the matter, \nand promises that he'll call the coroner and take care of things from here.\n")
+                    print("Downtrodden in heart -- and with a newfound fear of cats -- you resume your journey \nhome.  At least you're nearly there and you desperately hope that you can forget about \nthis wretched event.  You wonder if there was anything you could have done to prevent \nthis terrible incident.  The trauma has shaken you to your very core.\n")
+                    input("Press enter to continue...")
+                    print("\nLife is such a fragile and transient thing; death so permanent and irreversible; and \nno one should " + italic("EVER") + " make light of such things.  " + italic("NO ONE") + ".\n")
+                    input("Press enter to continue...")
+
                     valid_choice = True
                     scene_successful = True
                     alive = True
 
                 elif help_cat == "3":
+                    print("\nYou have a soft spot for cats, and this might be an excellent way to impress the \nlady -- not to mention an " + italic("excellent conversation starter") + "!  You put down your bags, \nmaking extra sure that your gaze doesn't turn in her direction so that she won't \nrealize you're aware of her presence, and hold out your arms to tell the cat \nyou'll catch it.\n")
+                    print("Apparently understanding your intent, the cat leaps down to your open arms...\n")
+                    input("Press enter to continue...")
+                    print("\n... but in it's fright from the long and rapid descent it utters a very frightened \n'YeeOWWWWWWLLLLLL!!!' and unintentionally mauls you in the face!  You fall back and \nhit your head wrong, causing a concussion swiftly followed by death.  The still-\nfrightened cat runs off into the distance.\n")
+                    print("The lady runs over to examine you and sees that you are, in fact, quite dead.  'I \nguess " + italic("that's that") + ", then.' says the black-clad lady.  She casually leaves the scene.\n")
+                    input("Press enter to continue...")
+
+
                     alive = False
                     valid_choice = True
 
@@ -509,6 +564,75 @@ def cat():
         return alive
 
 
+def epilogue():
+    """
+    This is the story's end.
+    """
+    global alive, reached_end
+    if alive:
+        print("\nAt long last you enter the door to your abode, quickly turning on the lights \nbecause the darkness only adds to your gloom.  You lifelessly look about the \nliving room in the vain hope of finding something to occupy your mind and \nsuperficially numb the depression -- knowing on an intellectual level that \nnothing could " + italic("EVER") + " do so, yet still you look.\n")
+        print("\nFinding nothing that could ever fill this newly developed void in your soul you \nclose your eyes and emit a long, hollow sigh.\n")
+        input("Press enter to continue...")
+        print("\nNow that you're home you finally notice the lack of weight in your left hand, \nmeaning that in your trauma you completely forgot about your new clothes and left \nthem at the park.  In this moment you could care less about something so trivial \nas the vanity of trends and fashion -- in fact " + italic("TO HELL WITH THEM") + "!\n")
+        print("At a loss from it all you move across the room in a listless, emotional auto-\npilot state and blankly switch on the radio from the sheer force of routine, \nand glumly plop yourself onto your favorite recliner.  You just sit there, half-\nheartedly listening to the news with the most vacant stare that could ever be \nfound on a human face...\n")
+        input("Press enter to continue...")
+        print("\n...but hark!  You're snapped out of your introspective melancholia by the news \nupon hearing about something very familiar to you and you lean in closely to \nhear, eyes wide and intense!\n")
+        input("Press enter to continue...")
+        print("\n'...was found dead in a local park, the cause of which\n was officially attributed to blunt trauma suffered on\n her occipital bone.  Based on the " + italic("deep lacerations on\n her face") + " she had been attacked some kind of animal\n -- " + italic("maybe a cat") + " or something similar.'\n")
+        print("'Upon inspection the police found she was in possession\n of several " + italic("concealed armaments") + " and that she carried\n multiple IDs, " + italic("all of them counterfeit") + ".  Upon questioning\n a doctor who was at the scene, he said...'\n")
+        input("Press enter to continue...")
+        print("\nThe massive weight you bore upon your heart immediately evaporates in that very \nmoment!  A new levity lifts your soul into the stratosphere!  This is BIG NEWS -- \nand the serendipity of your subconscious habit leading you to this discovery \nnothing short of astronomical!\n")
+        print("That woman had been " + italic("dangerous") + " -- and to think that you had been fancying the idea \nof " + italic("talking with her") + "!  From what the reporter had detailed she could have been \na mobster; a Terrorist; an " + italic("ASSASSIN") + "!  For all you know she " + italic("could have been trying \nto kill you") + "!  That's entirely ridiculous of course -- that only happens in the movies\n -- BUT STILL, such a dangerous person is better off gone from this world!\n")
+        input("Press enter to continue...")
+        print("\nYou feel utterly silly for ever having felt so depressed over her death, and with \nrenewed vigor you feel like you could take on the world!  You plan to celebrate \nthis newfound lease on life with some takeout from your favorite " + italic("[insert preferred \nclassification of cuisine here]") + " joint and giddily proceed to phone in your order!\n")
+        print("With that done your mind recalls the bag you left behind at the park.  If you leave \nnow it might still be there!  There's plenty of time before the food arrives \nso what are you waiting for!  You set off for the park, POST HASTE!\n")
+        input("Press enter to continue...")
+        print("\nThe next day, at the laboratory at which you work, you make a small but utterly \nfatal error that results in an apocalyptic chain reaction that spreads throughout \nthe entire world -- consuming " + italic("all life") + " in its wake!\n")
+        print("You've unwittingly " + italic("assassinated") + " the world and all life within it.\n")
+        input("Press enter to continue...")
+        print("\n... OH!...\n")
+        input("Press enter to continue...")
+        print("\n...\n")
+        input("Press enter to continue...")
+        print("\n...\n")
+        input("Press enter to continue...")
+        print("\n... " + italic("OK, then") + ".\n")
+        print("           " +italic("FIN"))
+        input("\nPress enter to complete the game...")
+
+        reached_end = True
+    return reached_end
+
+
+def new_game():
+    global scene_successful, replay, reached_end
+    if reached_end:
+        replay = False
+        print("\nCongratulations!  You have reached the end of my game!\n")
+        print("Would you like to have another go at the story and try to find all the different \nutterly ridiculous ways to di-- I mean ENDINGS of the game?\n")
+        answer = input("What say you? (y/n): ")
+        if answer == "y":
+            replay = True
+            scene_successful = False
+            reached_end = False
+        elif answer == "n":
+            replay = False
+        else:
+            print("\nInvalid choice, try again.")
+    return replay
+
+
+def post_script():
+    if reached_end and not replay:
+        print("\nWith " + italic("absolutely NO") + " apologies whatsoever for any stolen jokes -- ALL " + italic("TWO") + " OF THEM!\n")
+        input("Press enter to continue...")
+        print("\nWhoever correctly guesses which ones they are will receive a " + italic("non-corporeal") + " prize!\n")
+        input("Press enter to continue...")
+        print("\nAnd for anyone who is concerned that I made the assassin a woman, it was ONLY \nso that I could twice use a particular joke -- You might have even seen it at \nleast once in your playthrough(s).\n")
+        input("Press enter to continue...")
+        print("\nAnd once again: THANKS FOR PLAYING!")
+
+
 def your_actions():
     """
     This is just for my own amusement.
@@ -517,11 +641,12 @@ def your_actions():
     print("GO BACK AND TRY AGAIN.\n")
     input("Press enter to continue...")
 
+
 def dead_retry():
     """
     This offers the players another chance at the story, should they die.
     """
-    global alive, valid_choice
+    global alive, valid_choice, replay
     print("\nYou've been " + italic("assassinated") + ".\n")
     retry_result = False
     input_received = False
@@ -538,23 +663,11 @@ def dead_retry():
             alive = False
             retry_result = False
             input_received = True
+            replay = False
+
         else:
             print("\nInvalid choice, try again.")
     return retry_result
-
-
-#####  These calls are for testing!  #####
-# enter_name()
-# introduction()
-# scene = find_nickel()
-# scene = alley_guy()
-# offer()
-# book()
-# scene = might_be_followed()
-# scene = mens_room()
-# abandoned_store()
-# park_entrance()
-cat()
 
 
 #####  These functions are unused for this build  #####
