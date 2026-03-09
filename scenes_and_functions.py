@@ -652,7 +652,8 @@ def post_script():
         input("Press enter to continue...")
         print("\nAnd for anyone who is concerned that I made the assassin a woman, it was ONLY \nso that I could twice use a particular joke -- You might have even seen it at \nleast once in your playthrough(s).\n")
         input("Press enter to continue...")
-        print("\nAnd once again: THANKS FOR PLAYING!")
+        print("\nAnd once again: THANKS FOR PLAYING!\n")
+        print(f"{italic("-John Michael Soza"):>49}")
 
 
 def your_actions():
@@ -691,6 +692,7 @@ def dead_retry():
         else:
             print("\nInvalid choice, try again.")
     return retry_result
+
 
 
 #####  These functions are unused for this build  #####
