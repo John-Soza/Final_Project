@@ -3,6 +3,7 @@
 #                  A Simple Text Adventure
 #
 #Author: John Michael Soza
+#Date Completed: 3/20/2026
 #########################################################
 
 from scenes_and_functions import enter_name, introduction, find_nickel, alley_guy, offer, book, might_be_followed, abandoned_store, park_entrance, cat, epilogue, new_game, post_script
