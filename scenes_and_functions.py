@@ -111,7 +111,7 @@ def alley_guy():
         while not scene_successful and alive:
             valid_choice = False
             print(italic("\nANYWAY") + ", you continue your carefree trip home down the street, \neager to return home and try on your recently acquired apparel \nand enjoy some well-deserved leisure time.\n")
-            print("An audible 'Psst! Over here!' snaps you out of your internal \nmusings and your gaze darts about to find the this frightfully \nrude interruption.\n")
+            print("An audible 'Psst! Over here!' snaps you out of your internal \nmusings and your gaze darts about to find the source of this \nfrightfully rude interruption.\n")
             input("Press enter to continue...")
             while not valid_choice:
                 print("\nIn a nearby dark and dingy alley way stands a man of seemingly \nlow moral fiber, donned in a gray hat and trenchcoat.  It seems \nhe wants to speak with you.\n")
@@ -121,7 +121,7 @@ def alley_guy():
                 print()
                 go_see = input("please enter '1' or '2' to decide: ")
                 if go_see == "1":
-                    print("\nYou decide that it couldn't hurt to see what he wants and start \ntowards him.  On your way to him you a loud CRASH from behind \nyou gives you a real start!\n")
+                    print("\nYou decide that it couldn't hurt to see what he wants and start \ntowards him.  On your way to him, a loud CRASH from behind you \ngives you a real start!\n")
                     print("You spin around to see that in the spot where you had just stood \nlies a broken ceramic flowerpot, its contents now all over the \nsidewalk.\n")
                     input("Press enter to continue...")
 
@@ -137,6 +137,7 @@ def alley_guy():
                     print("Unfortunately for you, though, " + italic("THIS IS CANADA") + " and it takes \nlonger for emergencies to be taken care of.  The doctors took \ntoo long to get to you.\n")
                     input("Press enter to continue...")
                     print("\nYou were done in by the infamous healthcare system.\n")
+                    print("SORE-ee aboot that, eh!\n")
 
                     valid_choice = True
                     alive = False
@@ -162,7 +163,7 @@ def offer():
         scene_successful = False # This resets the variable to false, otherwise it skips this scene
         while not scene_successful and alive:
             valid_choice = False
-            print("\n'They really should place a ban on placing flowerpots on the balustrades! \nSomebody could get hurt!', you say with no small modicum of indignance. \n(NOTE: for those who don't know, that's another term for guard rails on \nbalconies)\n")
+            print("\n'They really should place a ban on placing flowerpots on the balustrades! \nSomebody could get hurt!', you say with no small modicum of indignation. \n(NOTE: for those who don't know, that's another term for guard rails on \nbalconies)\n")
             print("In any case, you have a more pressing matter at hand.\n")
             input("Press enter to continue...")
             while not valid_choice:
@@ -175,13 +176,13 @@ def offer():
                 take_book = input("please enter '1' or '2' to decide: ")
                 if take_book == "1":
                     print("\nYou're really not interested in buying another book right now -- and you \nalready have quite the backlog -- so you politely refuse the offer.\n")
-                    print("Possibly feeling a touch slighted, the man of seemingly low moral fiber \nabruptly strikes you in the abdomen sending you into a stagger. While \ntrying to maintain your footing you step into the empty space where a \nmanhole cover usually resides.  Too bad that today there " + italic("just happened") + " \nto be maintenance work.\n")
+                    print("Possibly feeling a touch slighted, the man of seemingly low moral fiber \nabruptly strikes you in the abdomen sending you into a stagger. While \ntrying to maintain your footing, you step into the empty space where a \nmanhole cover usually resides.  Too bad that today there " + italic("just happened") + " \nto be maintenance work.\n")
                     input("Press enter to continue...")
                     print("\nAs you fall through the open manhole your head hits the edge, causing \nloss of lucid cognitive functioning -- not to mention consciousness.  \nWhat's worse is that you fell into the water while in this state.\n")
                     print("Up above, the man of seemingly low moral fiber peers down into the darkness \nwith a ghastly pallor coloring his face and a mortified expression on \nhis countenance that clearly says -- in common vernacular -- 'Oh crumbs!'. \n")
                     input("Press enter to continue...")
                     print("\nUttering a small, disingenuous 'Not me!' he swiftly places his hands \ninto his pockets and walks off -- innocuously whistling as casually as \nhumanly possible.\n")
-                    print("Your died a swift -- and not to mention " + italic("very stinky") + " -- death.\n")
+                    print("Your died a swift -- and " + italic("very stinky") + " -- death.\n")
                     valid_choice = True
                     alive = False
 
@@ -329,7 +330,7 @@ def mens_room():
     while not scene_successful and alive:
         valid_choice = False
         print("\nYou enter the men's room, hopefully you'll be safe here.\n")
-        print("Out of curiosity you peer outside from around the corner, careful to not be seen.  \nScanning the environment your gaze fixes upon a figure -- a lady -- leaning \nagainst a waist-high retaining wall of a flowerbed containing shrubbery.\n")
+        print("Out of curiosity you peer outside from around the corner, careful not to be seen.  \nScanning the environment your gaze fixes upon a figure -- a lady -- leaning \nagainst a waist-high retaining wall of a flowerbed containing shrubbery.\n")
         print("She's dressed in stark and austere black attire and dark shades obscure her eyes.  \nShe smokes a clove cigarette and appears to be waiting for someone... she wasn't \nthere a moment ago.\n")
         input("Press enter to continue...")
         while not valid_choice:
@@ -344,7 +345,7 @@ def mens_room():
             options = input("please enter '1', '2', or '3' to decide: ")
             if options == "1":
                 print("\nIn a moment of inspired brilliance you decide to don your new clothing as a \ndisguise.  'Not only will I get out of this situation, I'll also get to try \non my new clothes!  Two birds with one stone!  I'm so clever!', you think to \nyourself.\n")
-                print("You change into your new out fit -- complete with hat -- and place your old \nclothes into the designer bag (they're still good, after all).  With renewed \nconfidence you walk out of the bathroom (first glancing at the mirror to \nadmire yourself).\n")
+                print("You change into your new outfit -- complete with hat -- and place your old \nclothes into the designer bag (they're still good, after all).  With renewed \nconfidence you walk out of the bathroom (first glancing at the mirror to \nadmire yourself).\n")
                 input("Press enter to continue...")
                 print("\nThe moment you exit the bathroom you perceive two things: 1) a 'BLAM!!!' sound; \nand 2) an excruciating pain in your chest -- swiftly followed by death.  In your \nfleeting final moments of consciousness you see the lady walk away.\n")
                 print("Your " + italic("'brilliant'") + " plan didn't work because she recognized the very distinct \n" + italic("designer bag") + " you were carrying, you sad silly person.\n")
@@ -580,7 +581,7 @@ def epilogue():
         input("Press enter to continue...")
         print("\n...but hark!  You're snapped out of your introspective melancholia by the news \nupon hearing about something very familiar to you and you lean in closely to \nhear, eyes wide and intense!\n")
         input("Press enter to continue...")
-        print("\n'...was found dead in a local park, the cause of which\n was officially attributed to blunt trauma suffered on\n her occipital bone.  Based on the " + italic("deep lacerations on\n her face") + " she had been attacked some kind of animal\n -- " + italic("maybe a cat") + " or something similar.'\n")
+        print("\n'...was found dead in a local park, the cause of which\n was officially attributed to blunt trauma suffered on\n her occipital bone.  Based on the " + italic("deep lacerations on\n her face") + " she had been attacked by some kind of animal\n -- " + italic("maybe a cat") + " or something similar.'\n")
         print("'Upon inspection the police found she was in possession\n of several " + italic("concealed armaments") + " and that she carried\n multiple IDs, " + italic("all of them counterfeit") + ".  Upon questioning\n a doctor who was at the scene, he said...'\n")
         input("Press enter to continue...")
         print("\nThe massive weight you bore upon your heart immediately evaporates in that very \nmoment!  A new levity lifts your soul into the stratosphere!  This is BIG NEWS -- \nand the serendipity of your subconscious habit leading you to this discovery \nnothing short of astronomical!\n")
