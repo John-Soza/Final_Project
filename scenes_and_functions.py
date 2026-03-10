@@ -4,6 +4,7 @@ scene_successful = False
 reached_end = False
 replay = False
 counter = 0
+user_name = None
 
 
 def italic(txt):
@@ -16,6 +17,7 @@ def enter_name():
     """
     The players enter their names here.
     """
+    global user_name
     print("\nWelcome! What is your name?\n")
     valid_name = False
     while not valid_name:
@@ -32,6 +34,7 @@ def enter_name():
             print("Godspeed!\n")
             input("Press enter to continue...")
             valid_name = True
+        return user_name
 
 
 def introduction():
@@ -50,11 +53,10 @@ def find_nickel():
     """
     This is the first decision point of the story.
     """
-    global alive, scene_successful
+    global alive, scene_successful, valid_choice
     # scene_successful = False
     if alive:
         while not scene_successful and alive:
-            global valid_choice
             valid_choice = False
             print("\nduring your lackadaisical stroll you perceive a bright glint in your \nperipheral vision. You turn your head to investigate.\n")
             input("Press enter to continue...")
@@ -608,10 +610,10 @@ def epilogue():
 
 
 def new_game():
-    global scene_successful, replay, reached_end, counter
+    global scene_successful, replay, reached_end, counter, user_name
     if reached_end:
 
-        print("\nCongratulations!  You have reached the end of my game!\n")
+        print(f"\nCongratulations, {user_name}!  You have reached the end of my game!\n")
         if counter < 1:
             print("And great job on not dying until you " + italic("accidentally destroyed the world") + "!\n")
         elif counter == 1:
@@ -693,6 +695,7 @@ def dead_retry():
         else:
             print("\nInvalid choice, try again.")
     return retry_result
+
 
 
 
