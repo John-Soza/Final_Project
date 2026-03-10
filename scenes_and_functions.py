@@ -16,7 +16,7 @@ def enter_name():
     """
     The players enter their names here.
     """
-    print("\nHello! What is your name?\n")
+    print("\nWelcome! What is your name?\n")
     valid_name = False
     while not valid_name:
         user_name = input("Please enter your name: ")
