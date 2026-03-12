@@ -21,20 +21,25 @@ def enter_name():
     print("\nWelcome! What is your name?\n")
     valid_name = False
     while not valid_name:
+
         user_name = input("Please enter your name: ")
 
         if user_name.isspace() or user_name == "":
             print("\nPlease " + italic("ACTUALLY ENTER") + " a name.\n")
+            
         elif user_name.isdigit():
             print("\nNumbers are " + italic("NOT") + " names.  If there is a number in your formal name, please \nuse " + italic("Roman Numerals") + " such as " + italic("'I', 'II', 'III'") + ", etc.\n")
+
         elif user_name.isalpha():
             print()
             print("Well met, " + user_name + "! Let us begin the story!\nYour actions affect the outcome!\n")
             print("And " + italic("don't worry too much about failing") + "!  If you \nmake a mistake you have the option to retry from \n" + italic("the last checkpoint") + ".\n")
             print("Godspeed!\n")
             input("Press enter to continue...")
+            print(f"Valid name is {valid_name}")
             valid_name = True
-        return user_name
+
+    return user_name
 
 
 def introduction():
