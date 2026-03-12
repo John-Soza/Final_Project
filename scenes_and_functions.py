@@ -22,7 +22,7 @@ def enter_name():
     valid_name = False
     while not valid_name:
 
-        user_name = input("Please enter your name: ")
+        user_name = input("Please enter your name (no spaces): ")
 
         if user_name.isspace() or user_name == "":
             print("\nPlease " + italic("ACTUALLY ENTER") + " a name.\n")
@@ -38,6 +38,9 @@ def enter_name():
             input("Press enter to continue...")
 
             valid_name = True
+
+        else:
+            print("\nNo spaces or numbers, or ASCII symbols, please.\n")
 
     return user_name
 
