@@ -12,7 +12,7 @@ def italic(txt):
     # \033[0m is the code to reset formatting
     return f"\033[3m{txt}\033[0m"
 
-def border():
+def border():  #Thanks for the idea, Jackie!
     print()
     print("_"*74)
 
