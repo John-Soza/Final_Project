@@ -18,6 +18,6 @@ When prompted, input the requested values/responses and press ENTER to confirm y
 ## Videos
 - [Code Demo](https://youtu.be/NWrn6AMHk5s)
   - Shows a brief demo of how the game works.
-- [Code Walkthrough](https://www.youtube.com/watch?v=...)
+- [Code Walkthrough](https://youtu.be/rtkF1oGi0dA)
   - Shows a brief, basic explanation of the code.
 
