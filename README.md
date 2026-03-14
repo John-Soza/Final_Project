@@ -17,5 +17,7 @@ When prompted, input the requested values/responses and press ENTER to confirm y
 
 ## Videos
 - [Code Demo](https://www.youtube.com/watch?v=...)
+  - Shows a brief demo of how the game works.
 - [Code Walkthrough](https://www.youtube.com/watch?v=...)
+  - Shows a brief, basic explanation of the code.
 
