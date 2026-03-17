@@ -26,3 +26,7 @@ When prompted, input the requested values/responses and press ENTER to confirm y
 - [Just An Ordinary Walk Home Walkthrough](https://youtu.be/rtkF1oGi0dA)
   - Shows a brief, basic explanation of the code.
 
+
+ ## Resources/Code Referenced
+ The italics function.
+
