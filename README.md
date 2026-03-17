@@ -27,6 +27,6 @@ When prompted, input the requested values/responses and press ENTER to confirm y
   - Shows a brief, basic explanation of the code.
 
 
- ## Resources/Code Referenced
+## Resources/Code Referenced
  The italics function.
 
