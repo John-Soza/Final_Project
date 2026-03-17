@@ -6,6 +6,8 @@ that result in different outcomes.
 
 ## How to Run
 All you need is Pycharm or your Operating System's command prompt to run it.
+In the command prompt, navigate to the directory containing the files and enter "python main.py" or, in my case, "py main.py"
+
 You need both the main.py file and the scenes_and_functions.py in order to run the game.
 You run the game from the main.py file
 
